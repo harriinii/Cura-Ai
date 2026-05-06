@@ -1,55 +1,128 @@
-# Cura AI
+# Cura AI 
 
-Cura AI is a high-end Full-Stack RAG (Retrieval-Augmented Generation) application designed for smart complaint prioritization in hostels. It uses artificial intelligence to analyze student reported issues, consults the local hostel policy, and automatically tags them with a priority level along with the reasoning.
+**Cura AI: Smart Hostel Management System**
 
-## 🌟 Features
+Cura AI is a high-end Full-Stack RAG (Retrieval-Augmented Generation) application designed for intelligent complaint prioritization. It moves beyond manual registers by using AI to analyze reported issues, consult local hostel policies, and take autonomous action for emergencies.
 
-- **Automated Complaint Prioritization**: Uses LangChain and Google's Gemini Flash model to classify the priority (e.g., Priority 1, Priority 2, Priority 3) of incoming complaints.
-- **RAG Architecture**: The AI reads directly from `hostel_policy.txt` utilizing ChromaDB for local vector storage, grounding its decisions in the actual rules of the hostel.
-- **Premium User Interface**: Built with React and Tailwind CSS, featuring a stunning 'Glassmorphism' dark mode design, accented with Electric Violet and Emerald Green. Smooth animations are powered by Framer Motion.
-- **Warden Dashboard**: A comprehensive admin view showing all logged complaints, their automatically assigned priorities, and the AI's step-by-step reasoning for full transparency.
+---
 
-## 🏗️ Architecture
+## 📂 Project Structure
 
-1. **Frontend (React.js)**: Captures user input (Student Portal) and displays insights (Admin Dashboard).
-2. **Backend (Python / FastAPI)**: Handles API requests securely.
-3. **Vector Database (ChromaDB)**: Chunks and embeds the `hostel_policy.txt` to enable semantic search capabilities.
-4. **LLM (Gemini Flash via LangChain)**: Interprets context and rules from ChromaDB to assign accurate, policy-based prioritizations.
+```
+Cura-AI/
+├── 📂 backend/
+│   ├── 📄 main.py              # FastAPI endpoints & AI Orchestration
+│   ├── 📄 hostel_policy.txt    # Knowledge base for RAG
+│   ├── 📂 chroma_db/           # Persistent Vector Storage
+│   └── 📄 .env                 # API Keys & Secrets
+├── 📂 frontend/
+│   ├── 📂 src/
+│   │   ├── 📂 components/      # Glassmorphism UI elements
+│   │   └── 📄 App.jsx          # Main React logic & Framer Motion
+│   ├── 📄 tailwind.config.js   # Custom Electric Violet/Emerald theme
+│   └── 📄 vite.config.js       # Build configurations
+└── 📄 README.md                # Documentation
+```
+
+---
+
+## 🌟 Key Features
+
+- **Automated Prioritization**  
+  Uses LangChain and Gemini 1.5 Flash to classify issues into:
+  - Priority 1 (Emergency)
+  - Priority 2 (Standard)
+  - Priority 3 (Routine)
+
+- **RAG Architecture**  
+  Grounded in a local `hostel_policy.txt` knowledge base using ChromaDB to ensure decisions follow official rules.
+
+- **Real-Time Emergency Alerts**  
+  Integrated with Twilio API to send instant SMS notifications to the warden for critical issues.
+
+- **Premium Glassmorphism UI**  
+  Dark-mode dashboard built with React, Tailwind CSS, and Framer Motion.
+
+- **Mobile-Ready**  
+  Wrapped with Capacitor for a native Android/iOS experience.
+
+---
+
+## 🏗️ Technical Architecture
+
+- **Frontend:** React.js + Vite (Tailwind CSS + Framer Motion)  
+- **Backend:** Python + FastAPI  
+- **Orchestration:** LangChain (RAG Pipeline)  
+- **Vector Database:** ChromaDB (Semantic Search & Embeddings)  
+- **LLM:** Gemini 1.5 Flash (Google Generative AI)  
+- **Communication:** Twilio API (SMS Gateway)  
+- **Mobile Bridge:** Capacitor  
+
+---
 
 ## 🚀 Getting Started
 
-### 1. Backend Setup
-
-Navigate to the `backend` directory, create a virtual environment, and install dependencies:
+### 1️⃣ Backend Setup
 
 ```bash
 cd backend
-python -m venv venv
-# On Windows
-venv\Scripts\activate
-# On Mac/Linux
-source venv/bin/activate
+python -m venv .venv
+.venv\Scripts\activate   # Windows
+# source .venv/bin/activate  # Mac/Linux
+
 pip install -r requirements.txt
 ```
 
-### 2. Environment Variables
+---
 
-Create a `.env` file in the root backend directory (based on `.env.template`) and add your Gemini API Key:
-
-```env
-GEMINI_API_KEY=your_actual_gemini_api_key_here
-```
-
-### 3. Run the Backend Server
-
-Start the FastAPI server:
+### 2️⃣ Frontend Setup
 
 ```bash
-uvicorn app.main:app --reload
+cd frontend
+npm install
+npm run dev
 ```
 
-The server will start on `http://localhost:8000`. You can test the endpoints using the Swagger UI at `http://localhost:8000/docs`.
+---
 
-### Next Steps...
+### 3️⃣ Configuration (.env)
 
-The frontend implementation utilizes Vite, React, Tailwind UI, and Framer Motion for the premium dark mode experience.
+Create a `.env` file inside the `backend` folder:
+
+```env
+GEMINI_API_KEY=your_gemini_key
+TWILIO_ACCOUNT_SID=your_sid
+TWILIO_AUTH_TOKEN=your_token
+TWILIO_PHONE_NUMBER=your_twilio_number
+WARDEN_PHONE_NUMBER=warden_phone_number
+```
+
+---
+
+## 💡 Priority Logic (Risk Assessment)
+
+| Level | Classification | Example Issue              | System Action                      |
+|------|--------------|---------------------------|----------------------------------|
+| P1   | Emergency     | Electrical spark / Fire   | 🚨 Red Alert + Instant SMS        |
+| P2   | Standard      | Water leak / Light issue  | Logged for maintenance           |
+| P3   | Routine       | Food feedback             | Stored as non-urgent feedback    |
+
+---
+
+## 🔮 Future Roadmap
+
+- **IoT Integration**  
+  Smart sensors for predictive maintenance  
+
+- **Multi-lingual Support**  
+  Report issues in native languages  
+
+- **Self-Healing System**  
+  Auto-assign maintenance tasks  
+
+---
+
+## 👩‍💻 Developed By
+
+**Harini H**  
+AI & ML Student | Computer Science & Engineering
