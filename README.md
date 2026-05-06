@@ -135,26 +135,6 @@ WARDEN_PHONE_NUMBER=warden_phone
 
 ---
 
-## 📸 Screenshots
-
-_Add your UI screenshots here_
-
-```
-![Dashboard](./screenshots/dashboard.png)
-```
-
----
-
-## 🎥 Demo
-
-_Add your demo video link here_
-
-```
-https://your-demo-link.com
-```
-
----
-
 ## 🔮 Future Enhancements
 
 - 🤖 IoT-based predictive maintenance  
@@ -164,18 +144,9 @@ https://your-demo-link.com
 
 ---
 
-## 💡 Why This Project Stands Out
-
-- Combines **LLM + RAG + Full Stack Development**
-- Real-world use case (hostel/campus management)
-- Goes beyond CRUD → **decision-making AI system**
-- Includes automation (alerts + prioritization)
-
----
-
 ## 👩‍💻 Author
 
-**Harini H**  
+**HARINI H**  
 AI & ML Student | Computer Science & Engineering  
 
 ---
