@@ -1,6 +1,6 @@
 # Cura AI 
 
-# Cura AI — Smart Hostel Management System
+# Smart Hostel Management System
 
 <p align="center">
   <b>AI-powered complaint prioritization using RAG + LLMs</b><br/>
