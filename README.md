@@ -1,8 +1,51 @@
 # Cura AI 
 
-**Cura AI: Smart Hostel Management System**
+# Cura AI — Smart Hostel Management System
 
-Cura AI is a high-end Full-Stack RAG (Retrieval-Augmented Generation) application designed for intelligent complaint prioritization. It moves beyond manual registers by using AI to analyze reported issues, consult local hostel policies, and take autonomous action for emergencies.
+<p align="center">
+  <b>AI-powered complaint prioritization using RAG + LLMs</b><br/>
+  Transforming hostel issue management with intelligent automation & real-time alerts
+</p>
+
+---
+
+## 🧠 Overview
+
+Cura AI is a Full-Stack AI system that intelligently analyzes student complaints, retrieves relevant hostel policies, and assigns priority levels with reasoning.
+
+Unlike traditional systems, it doesn't just store complaints — it **understands, decides, and acts**.
+
+---
+
+## ✨ Key Features
+
+- 🔹 AI-powered complaint classification (P1 / P2 / P3)  
+- 🔹 Retrieval-Augmented Generation (RAG) for grounded decision-making  
+- 🔹 Real-time emergency alerts using Twilio API  
+- 🔹 Premium glassmorphism UI (React + Tailwind + Framer Motion)  
+- 🔹 Mobile-ready using Capacitor  
+
+---
+
+## 🏗️ Architecture
+
+```
+User Complaint
+      ↓
+Frontend (React UI)
+      ↓
+FastAPI Backend
+      ↓
+LangChain (RAG Pipeline)
+      ↓
+ChromaDB ← hostel_policy.txt
+      ↓
+Gemini LLM (Reasoning + Classification)
+      ↓
+Priority Output + Explanation
+      ↓
+🚨 Twilio Alert (if Emergency)
+```
 
 ---
 
@@ -10,59 +53,27 @@ Cura AI is a high-end Full-Stack RAG (Retrieval-Augmented Generation) applicatio
 
 ```
 Cura-AI/
-├── 📂 backend/
-│   ├── 📄 main.py              # FastAPI endpoints & AI Orchestration
-│   ├── 📄 hostel_policy.txt    # Knowledge base for RAG
-│   ├── 📂 chroma_db/           # Persistent Vector Storage
-│   └── 📄 .env                 # API Keys & Secrets
-├── 📂 frontend/
-│   ├── 📂 src/
-│   │   ├── 📂 components/      # Glassmorphism UI elements
-│   │   └── 📄 App.jsx          # Main React logic & Framer Motion
-│   ├── 📄 tailwind.config.js   # Custom Electric Violet/Emerald theme
-│   └── 📄 vite.config.js       # Build configurations
-└── 📄 README.md                # Documentation
+├── backend/
+│   ├── main.py
+│   ├── hostel_policy.txt
+│   ├── chroma_db/
+│   └── .env
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   └── App.jsx
+│   ├── tailwind.config.js
+│   └── vite.config.js
+│
+└── README.md
 ```
-
----
-
-## 🌟 Key Features
-
-- **Automated Prioritization**  
-  Uses LangChain and Gemini 1.5 Flash to classify issues into:
-  - Priority 1 (Emergency)
-  - Priority 2 (Standard)
-  - Priority 3 (Routine)
-
-- **RAG Architecture**  
-  Grounded in a local `hostel_policy.txt` knowledge base using ChromaDB to ensure decisions follow official rules.
-
-- **Real-Time Emergency Alerts**  
-  Integrated with Twilio API to send instant SMS notifications to the warden for critical issues.
-
-- **Premium Glassmorphism UI**  
-  Dark-mode dashboard built with React, Tailwind CSS, and Framer Motion.
-
-- **Mobile-Ready**  
-  Wrapped with Capacitor for a native Android/iOS experience.
-
----
-
-## 🏗️ Technical Architecture
-
-- **Frontend:** React.js + Vite (Tailwind CSS + Framer Motion)  
-- **Backend:** Python + FastAPI  
-- **Orchestration:** LangChain (RAG Pipeline)  
-- **Vector Database:** ChromaDB (Semantic Search & Embeddings)  
-- **LLM:** Gemini 1.5 Flash (Google Generative AI)  
-- **Communication:** Twilio API (SMS Gateway)  
-- **Mobile Bridge:** Capacitor  
 
 ---
 
 ## 🚀 Getting Started
 
-### 1️⃣ Backend Setup
+### 🔧 Backend Setup
 
 ```bash
 cd backend
@@ -75,7 +86,7 @@ pip install -r requirements.txt
 
 ---
 
-### 2️⃣ Frontend Setup
+### 💻 Frontend Setup
 
 ```bash
 cd frontend
@@ -85,44 +96,86 @@ npm run dev
 
 ---
 
-### 3️⃣ Configuration (.env)
+### 🔑 Environment Variables
 
-Create a `.env` file inside the `backend` folder:
+Create a `.env` file inside `backend/`:
 
 ```env
-GEMINI_API_KEY=your_gemini_key
+GEMINI_API_KEY=your_api_key
+
 TWILIO_ACCOUNT_SID=your_sid
 TWILIO_AUTH_TOKEN=your_token
 TWILIO_PHONE_NUMBER=your_twilio_number
-WARDEN_PHONE_NUMBER=warden_phone_number
+
+WARDEN_PHONE_NUMBER=warden_phone
 ```
 
 ---
 
-## 💡 Priority Logic (Risk Assessment)
+## ⚡ How It Works
 
-| Level | Classification | Example Issue              | System Action                      |
-|------|--------------|---------------------------|----------------------------------|
-| P1   | Emergency     | Electrical spark / Fire   | 🚨 Red Alert + Instant SMS        |
-| P2   | Standard      | Water leak / Light issue  | Logged for maintenance           |
-| P3   | Routine       | Food feedback             | Stored as non-urgent feedback    |
-
----
-
-## 🔮 Future Roadmap
-
-- **IoT Integration**  
-  Smart sensors for predictive maintenance  
-
-- **Multi-lingual Support**  
-  Report issues in native languages  
-
-- **Self-Healing System**  
-  Auto-assign maintenance tasks  
+1. Student submits a complaint  
+2. System retrieves relevant rules from `hostel_policy.txt`  
+3. Gemini LLM analyzes severity using context  
+4. Assigns priority:
+   - 🔴 P1 → Emergency  
+   - 🟡 P2 → Standard  
+   - 🟢 P3 → Routine  
+5. 🚨 If P1 → instant SMS alert to warden  
 
 ---
 
-## 👩‍💻 Developed By
+## 📊 Priority Logic
+
+| Priority | Type       | Example                | Action                        |
+|----------|------------|------------------------|-------------------------------|
+| 🔴 P1     | Emergency  | Fire, Electric Spark   | Instant SMS + Red Alert UI    |
+| 🟡 P2     | Standard   | Water leak             | Logged for maintenance        |
+| 🟢 P3     | Routine    | Food feedback          | Stored for review             |
+
+---
+
+## 📸 Screenshots
+
+_Add your UI screenshots here_
+
+```
+![Dashboard](./screenshots/dashboard.png)
+```
+
+---
+
+## 🎥 Demo
+
+_Add your demo video link here_
+
+```
+https://your-demo-link.com
+```
+
+---
+
+## 🔮 Future Enhancements
+
+- 🤖 IoT-based predictive maintenance  
+- 🌍 Multi-language complaint support  
+- 🧠 Automated task assignment system  
+- 📊 Analytics dashboard  
+
+---
+
+## 💡 Why This Project Stands Out
+
+- Combines **LLM + RAG + Full Stack Development**
+- Real-world use case (hostel/campus management)
+- Goes beyond CRUD → **decision-making AI system**
+- Includes automation (alerts + prioritization)
+
+---
+
+## 👩‍💻 Author
 
 **Harini H**  
-AI & ML Student | Computer Science & Engineering
+AI & ML Student | Computer Science & Engineering  
+
+---
